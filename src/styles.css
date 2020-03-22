@@ -1,1 +1,77 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  font-size: calc(12px + (26 - 12) * ((100vw - 300px) / (1600 - 300)));
+  max-width: 88vw;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+:root {
+  --back-color: rgba(	255, 255, 255, .25);
+  --mova-color: rgb(105, 189, 69);
+  --cj26-color: rgb(237, 32, 36);
+  --lexe-color: rgb(57, 83, 164); /*#3953A4*/
+}
+:active, :focus {text-decoration: none; outline: 0; border: 0; }
+
+a {text-decoration: none;}
+a, ul { background-color: var(--back-color); }
+ul, ol { list-style-type: none; }
+a:hover { cursor: pointer; }
+
+.lang_cyr, .lang_en, .lang_zh { font-weight: 100; }
+.lang_cyr, .lang_en{font-family: 'El Messiri', sans-serif;}
+.lang_zh{font-family: 'Noto Serif TC', serif;}
+
+.page-content {
+  height: 100vh;
+  display: grid;
+  grid-gap: 9px;
+  font-size: 110%;
+  grid-template-rows: 55px 1fr 35px;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'header'
+    'area'
+    'footer';
+}
+
+.header {
+  grid-area: header;
+  min-height: 45px;
+  min-width: 50vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(237, 32, 36, .69);
+}
+.area {
+  grid-area: area;
+  min-width: 80vw;
+  padding: 22px;
+  display: flex;
+  flex-flow: column;
+  align-content: center;
+}
+.footer {
+  grid-area: footer;
+  height: 25px;
+  min-width: 50vw;
+  text-align: center;
+  color: rgba(237, 32, 36, .69);
+  font-size: 44%;
+}
+
+.header>a>img {
+  padding: 10px;
+  width: 2.45rem;
+  height: auto;
+}
+
+.cj-title {
+  color: var(--cj26-color);
+  -webkit-text-stroke: 1px var(--cj26-color);
+  -webkit-text-fill-color: white;
+  font-size: 1.485rem;
+  font-weight: 300;
+  opacity: .69;
+}
