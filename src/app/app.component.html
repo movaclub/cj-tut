@@ -1,1 +1,14 @@
-<h3>{{title}}</h3>
+<div class="tut-grid">
+  <div class="tut-contents lang_cyr"
+       (mouseleave)="contentHide()"
+       (mouseenter)="contentShow()">
+    Зміст Курсу
+  </div> <!--ngIF IN-OUT -->
+  <div class="tut-lessons" *ngIf="!showContents">
+    <div class="tut-lesson-info">INFO</div>
+    <div class="tut-lesson-drill">DRILL</div>
+    <div class="tut-lesson-keyboard">KEYBOARD</div>
+  </div>
+</div>
+
+
