@@ -1,18 +1,18 @@
 .tut-grid {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  /*justify-content: center;*/
+  align-content: center;
 }
 
 .tut-contents {
   border-radius: 5px;
   margin-bottom: 3px;
-  z-index: 100;
   font-size: .901rem;
   height: 22px;
   width: 1fr;
   min-height: 22px;
-  background-color: rgba(237, 32, 36, .69);
+  background-color: rgba(237, 32, 36, .99);
   color: snow;
   text-align: center;
   transition-property: height, background-color;
@@ -20,11 +20,12 @@
 }
 
 .tut-contents:hover {
+  color:rgba(237, 32, 36, .99);
+  font-weight: 700;
   margin: 0;
   bottom: 5px;
-  height: 69vh;
-  z-index: 1;
-  background-color: rgba(237, 32, 36, .99);
+  height: 80vh;
+  background-color: rgba(237, 32, 36, .01);
 }
 
 .tut-lessons {
@@ -55,3 +56,35 @@
   border: 1px solid green;
 }
 
+/* contents start */
+.content-grid {
+  z-index: 100;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
+.content-cell {
+  flex-basis: 20vw;
+  display: flex;
+  flex-direction: row;
+  border-radius: 1rem;
+  border: 1px solid rgba(237, 32, 36, .22);
+}
+
+.cont-number {
+  flex-basis: 10%;
+  /*background-color: var(--cj26-color);*/
+  /*color: snow;*/
+
+}
+
+.cont-section {
+  flex-basis: 90%;
+}
+
+
+/* contents end */

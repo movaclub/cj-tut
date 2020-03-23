@@ -3,6 +3,21 @@
        (mouseleave)="contentHide()"
        (mouseenter)="contentShow()">
     Зміст Курсу
+    <div *ngIf="content; else noItems" class="content-grid">
+        <div *ngFor="let cont of content" class="content-cell lang_cyr">
+
+          <div class="cont-number">
+            {{cont.id+1}}
+          </div>
+
+          <div class="cont-section">
+            {{cont.ua}}
+          </div>
+
+        </div>
+    </div>
+<ng-template #noItems><!--    завантаження списку...--></ng-template>
+
   </div> <!--ngIF IN-OUT -->
   <div class="tut-lessons" *ngIf="!showContents">
     <div class="tut-lesson-info">INFO</div>
