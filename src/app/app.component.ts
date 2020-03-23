@@ -12,7 +12,6 @@ export class AppComponent implements OnInit {
   showContents: boolean;
   contentUA: Observable<{OK: boolean; contents: []}>;
   content: object[];
-  noItems: any;
   subsc: Subscription;
 
   constructor(private api: ApiService) {}
@@ -21,10 +20,7 @@ export class AppComponent implements OnInit {
     this.showContents = false;
     this.contentUA = this.api.getContentsUA();
   }
-// { "id": 0, "ua": "Вступ" }
-// { "id": 1, "ua": "Першорядні радикали" }
-// { "id": 2, "ua": "Ієрогліфи з однією та декількома частинами" }
-// { "id": 3, "ua": "Основні правила" }
+
   contentShow(): void {
     this.showContents = true;
     this.subsc = this.contentUA
@@ -34,6 +30,7 @@ export class AppComponent implements OnInit {
         }
       );
   }
+
   contentHide(): void {
 
     this.subsc.unsubscribe();

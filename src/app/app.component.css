@@ -10,7 +10,6 @@
   margin-bottom: 3px;
   font-size: .901rem;
   height: 22px;
-  width: 1fr;
   min-height: 22px;
   background-color: rgba(237, 32, 36, .99);
   color: snow;
@@ -22,9 +21,8 @@
 .tut-contents:hover {
   color:rgba(237, 32, 36, .99);
   font-weight: 700;
-  margin: 0;
-  bottom: 5px;
   height: 80vh;
+  text-align: center;
   background-color: rgba(237, 32, 36, .01);
 }
 
@@ -58,21 +56,29 @@
 
 /* contents start */
 .content-grid {
-  z-index: 100;
-  margin-top: 3rem;
+  /*z-index: 100;*/
+  /*margin-top: 2rem;*/
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-content: center;
-  align-items: center;
-  text-align: center;
+  /*align-content: space-between;*/
+  /*align-items: center;*/
 }
 .content-cell {
+  margin: 1px;
   flex-basis: 20vw;
   display: flex;
   flex-direction: row;
-  border-radius: 1rem;
+  border-radius: .55rem;
   border: 1px solid rgba(237, 32, 36, .22);
+  align-content: flex-start;
+  align-items: flex-start;
+  cursor: pointer;
+  font-size: 93%;
+}
+.content-cell:hover {
+  background-color: var(--cj26-color);
+  color: snow;
 }
 
 .cont-number {
@@ -84,6 +90,7 @@
 
 .cont-section {
   flex-basis: 90%;
+  text-align: left;
 }
 
 
