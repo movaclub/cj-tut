@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
     this.subsc.unsubscribe();
 
     setTimeout( () => {
-    this.content = [...[]]; }, 1234);
+    this.content = [...[]]; }, 1678);
 
     setTimeout( () => {
       this.showContents = false; }, 1678);

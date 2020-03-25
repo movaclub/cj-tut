@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   /*justify-content: center;*/
-  align-content: center;
 }
 
 .tut-contents {
@@ -14,8 +13,9 @@
   background-color: rgba(237, 32, 36, .99);
   color: snow;
   text-align: center;
+  align-content: space-between;
   transition-property: height, background-color;
-  transition: 2s, 3s;
+  transition: 2s, 2s;
 }
 
 .tut-contents:hover {
@@ -23,6 +23,7 @@
   font-weight: 700;
   height: 80vh;
   text-align: center;
+  align-content: space-between;
   background-color: rgba(237, 32, 36, .01);
 }
 
@@ -56,13 +57,12 @@
 
 /* contents start */
 .content-grid {
-  /*z-index: 100;*/
-  /*margin-top: 2rem;*/
+  margin-top: 1rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /*align-content: space-between;*/
-  /*align-items: center;*/
+  justify-content: space-between;
+  align-items: center;
 }
 .content-cell {
   margin: 1px;
