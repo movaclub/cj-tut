@@ -10,22 +10,22 @@
   font-size: .901rem;
   height: 22px;
   min-height: 22px;
-  background-color: rgba(237, 32, 36, .99);
-  color: snow;
+  /*background-color: rgba(237, 32, 36, .99);*/
+  /*color: snow;*/
   text-align: center;
   align-content: space-between;
-  transition-property: height, background-color;
-  transition: 2s, 2s;
+  /*transition-property: height, background-color;*/
+  /*transition: 1100ms, 2s;*/
 }
 
-.tut-contents:hover {
-  color:rgba(237, 32, 36, .99);
-  font-weight: 700;
-  height: 80vh;
-  text-align: center;
-  align-content: space-between;
-  background-color: rgba(237, 32, 36, .01);
-}
+/*.tut-contents:hover {*/
+/*  color:rgba(237, 32, 36, .99);*/
+/*  font-weight: 700;*/
+/*  height: 80vh;*/
+/*  text-align: center;*/
+/*  align-content: space-between;*/
+/*  background-color: rgba(237, 32, 36, .01);*/
+/*}*/
 
 .tut-lessons {
   display: grid;
@@ -42,8 +42,14 @@
 
 .tut-lesson-info {
   grid-area: info;
-  border: 1px solid blue;
+  font-size: .9991rem;
+  text-align: justify;
 }
+
+/*.tut-lesson-info+p+strong {*/
+/*  font-size: 3.1rem;*/
+/*  color: gray;*/
+/*}*/
 
 .tut-lesson-drill {
   grid-area: drill;
@@ -57,22 +63,37 @@
 
 /* contents start */
 .content-grid {
+  /*max-width: 80%;*/
+  max-height: 80vh;
   margin-top: 1rem;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
+  /*justify-content: space-between;*/
+  flex-flow: column wrap;
+  align-content: center;
 }
+
+/*.content-grid {*/
+/*  margin-top: 1rem;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  flex-wrap: wrap;*/
+/*  justify-content: space-between;*/
+/*  align-items: center;*/
+/*}*/
+
 .content-cell {
+  max-height: max-content;
   margin: 1px;
-  flex-basis: 20vw;
+  /*min-width: max-content;*/
+  min-width: 20vw;
   display: flex;
   flex-direction: row;
   border-radius: .55rem;
   border: 1px solid rgba(237, 32, 36, .22);
   align-content: flex-start;
   align-items: flex-start;
+  justify-content: space-between;
   cursor: pointer;
   font-size: 93%;
 }
@@ -82,16 +103,69 @@
 }
 
 .cont-number {
-  flex-basis: 10%;
-  /*background-color: var(--cj26-color);*/
-  /*color: snow;*/
-
+  flex: 1 0 0;
 }
 
 .cont-section {
-  flex-basis: 90%;
+  flex: 9 0 0;
   text-align: left;
 }
 
-
 /* contents end */
+
+/* buttons */
+
+.tut-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+#tut-btn-drill {
+  flex: .98 0 0;
+}
+#tut-btn-kb {
+  flex: 1.3 0 0;
+}
+#tut-btn-more {
+  flex: 1.78 0 0;
+}
+
+#tut-btn-content {
+  flex: .78 0 0;
+}
+
+#tut-btn-lessn-prev {
+  flex: 3 0 0;
+}
+
+#tut-btn-lessn-curr {
+  flex: 3 0 0;
+}
+
+#tut-btn-lessn-next {
+  flex: 3 0 0;
+}
+
+.tut-btn {
+  background-color:rgba(237, 32, 36, .69);
+  border-radius:.31rem;
+  border:1px solid #ffffff;
+  display:inline-block;
+  cursor:pointer;
+  color: snow;
+  font-size:.991rem;
+  font-weight: 500;
+  padding:5px;
+  text-decoration:none;
+  min-height: 3.5vh;
+  max-height: 4.1vh;
+}
+.tut-btn:hover {
+  background-color:#ed2023;
+}
+.tut-btn:active {
+  position:relative;
+  top:1px;
+}
+
+/* buttons */

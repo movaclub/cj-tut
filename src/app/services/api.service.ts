@@ -8,13 +8,26 @@ import {catchError, map} from 'rxjs/operators';
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
+  private apiURL: string;
+
+  constructor(private http: HttpClient) {
+    this.apiURL = 'http://localhost:18181';
+  }
 
   getContentsUA(): Observable<any> {
-    return this.http.get('http://localhost:18181/cjtut/contents/ua')
+    return this.http.get(`${this.apiURL}/cjtut/contents/ua`)
       .pipe(
         map( el => JSON.parse(JSON.stringify(el))),
         catchError( e => of(e) )
       );
   }
+
+  getContentByIdUA(id: number): Observable<any> {
+    return this.http.get(`${this.apiURL}/cjtut/${id}`)
+      .pipe(
+        map( el => JSON.parse(JSON.stringify(el))),
+        catchError( e => of(e) )
+      );
+  }
+
 }

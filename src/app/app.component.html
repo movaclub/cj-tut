@@ -1,29 +1,39 @@
-<div class="tut-grid">
-  <div class="tut-contents lang_cyr"
-       (mouseleave)="contentHide()"
-       (mouseenter)="contentShow()">
-    Зміст Курсу
-    <div *ngIf="content; else noItems" class="content-grid">
-        <div *ngFor="let cont of content" class="content-cell lang_cyr">
+<div class="tut-grid lang_cyr">
+  <div class="tut-contents">
 
-          <div class="cont-number">
-            {{cont.id+1}}
-          </div>
+    <div class="tut-buttons">
 
-          <div class="cont-section">
-            {{cont["ua"]}}
-          </div>
+      <button id="tut-btn-content" class="tut-btn lang_cyr"> <span style="font-size: 1.55rem;">📜</span> Зміст </button>
 
-        </div>
+      <button id="tut-btn-lessn-prev" class="tut-btn lang_cyr"> (Попередній Урок) <span style="font-size: 1.55rem;">👈</span></button>
+      <button id="tut-btn-lessn-curr" class="tut-btn lang_cyr"> <span style="font-size: 1.55rem;">👌</span> (Поточний Урок) </button>
+      <button id="tut-btn-lessn-next" class="tut-btn lang_cyr"><span style="font-size: 1.55rem;">👉</span>  (Наступний Урок) </button>
+
+      <button id="tut-btn-kb" class="tut-btn lang_cyr"> Клавіатура <span style="font-size: 1.55rem;">👐</span> </button>
+      <button id="tut-btn-drill" class="tut-btn lang_cyr"> Вправи <span style="font-size: 1.55rem;">✍</span> </button>
+      <button id="tut-btn-more" class="tut-btn lang_cyr">Більше про ЦанЦзє <span style="font-size: 1.55rem;">🈴</span></button>
+
     </div>
-<ng-template #noItems><!--    завантаження списку...--></ng-template>
 
-  </div> <!--ngIF IN-OUT -->
-  <div class="tut-lessons" *ngIf="!showContents">
-    <div class="tut-lesson-info">INFO</div>
-    <div class="tut-lesson-drill">DRILL</div>
-    <div class="tut-lesson-keyboard">KEYBOARD</div>
+    <div *ngIf="contStates.content" class="content-grid">
+      <div *ngFor="let cont of content" class="content-cell lang_cyr">
+
+        <div class="cont-number">
+          {{cont.id+1}}
+        </div>
+
+        <div class="cont-section">
+          {{cont["ua"]}}
+        </div>
+
+      </div>
+    </div>
+
   </div>
+
+  <div *ngIf="contStates.infoBlock" class="tut-lesson-info" [innerHTML]="(curInfoBlock | async)?.cjInfo | safe"></div>
+  <div *ngIf="contStates.drillBlock" class="tut-lesson-drill">DRILL</div>
+  <div *ngIf="contStates.kBoard" class="tut-lesson-keyboard">KEYBOARD</div>
 </div>
 
 
