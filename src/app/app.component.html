@@ -3,7 +3,7 @@
 
     <div class="tut-buttons">
 
-      <button id="tut-btn-content" class="tut-btn lang_cyr"> <span style="font-size: 1.55rem;">📜</span> Зміст </button>
+      <button (click)="showContent()" id="tut-btn-content" class="tut-btn lang_cyr"><span style="font-size: 1.55rem;">📜</span>Зміст</button>
 
       <button id="tut-btn-lessn-prev" class="tut-btn lang_cyr"> (Попередній Урок) <span style="font-size: 1.55rem;">👈</span></button>
       <button id="tut-btn-lessn-curr" class="tut-btn lang_cyr"> <span style="font-size: 1.55rem;">👌</span> (Поточний Урок) </button>
@@ -11,27 +11,23 @@
 
       <button id="tut-btn-kb" class="tut-btn lang_cyr"> Клавіатура <span style="font-size: 1.55rem;">👐</span> </button>
       <button id="tut-btn-drill" class="tut-btn lang_cyr"> Вправи <span style="font-size: 1.55rem;">✍</span> </button>
-      <button id="tut-btn-more" class="tut-btn lang_cyr">Більше про ЦанЦзє <span style="font-size: 1.55rem;">🈴</span></button>
+      <button id="tut-btn-more" class="tut-btn lang_cyr">Ще про ЦанЦзє <span style="font-size: 1.55rem;">🈴</span></button>
 
     </div>
 
     <div *ngIf="contStates.content" class="content-grid">
-      <div *ngFor="let cont of content" class="content-cell lang_cyr">
-
+      <div *ngFor="let cont of (contentUA | async)?.contents" class="content-cell lang_cyr">
         <div class="cont-number">
-          {{cont.id+1}}
+          {{cont["id"]+1}}
         </div>
-
         <div class="cont-section">
           {{cont["ua"]}}
         </div>
-
-      </div>
     </div>
-
   </div>
 
-  <div *ngIf="contStates.infoBlock" class="tut-lesson-info" [innerHTML]="(curInfoBlock | async)?.cjInfo | safe"></div>
+  <div *ngIf="contStates.infoBlock" [innerHTML]="(curInfoBlock | async)?.cjInfo | safe" class="tut-lesson-info"></div>
+
   <div *ngIf="contStates.drillBlock" class="tut-lesson-drill">DRILL</div>
   <div *ngIf="contStates.kBoard" class="tut-lesson-keyboard">KEYBOARD</div>
 </div>

@@ -164,7 +164,7 @@
   background-color:#ed2023;
 }
 .tut-btn:active {
-  position:relative;
+  /*position:relative;*/
   top:1px;
 }
 

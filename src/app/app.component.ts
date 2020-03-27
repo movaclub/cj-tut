@@ -1,4 +1,4 @@
-import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import { ApiService } from './services/api.service';
 import {EMPTY, Observable, Subscription} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -8,17 +8,13 @@ import {map} from 'rxjs/operators';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
 
-  // showContents: boolean;
   contStates: {content: boolean; infoBlock: boolean; drillBlock: boolean; kBoard: boolean; };
   contentUA: Observable<{OK: boolean; contents: []}>;
-  curInfoBlock: Observable<any>;
+  curInfoBlock: Observable<{OK: boolean; cjInfo: string; }>;
   curInfoBlockId: number;
   content: object[];
-  infoBlock: string;
-  subsCont: Subscription;
-  subsInfo: Subscription;
 
   constructor(private api: ApiService) {}
 
@@ -42,6 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
       drillBlock: false,
       kBoard: false,
     };
+    console.log('showContent-', this.contStates);
   }
 
   showInfo(): void {
@@ -64,10 +61,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.contStates.kBoard = !this.contStates.kBoard;
   }
 
-  ngOnDestroy(): void {
-    this.subsInfo.unsubscribe();
-    this.subsCont.unsubscribe();
-  }
+  // ngOnDestroy(): void {
+  //   this.subsInfo.unsubscribe();
+  //   this.subsCont.unsubscribe();
+  // }
 
   // winResize(): void {
   //   let myHeight = 0;
