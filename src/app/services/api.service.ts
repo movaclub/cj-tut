@@ -30,4 +30,13 @@ export class ApiService {
       );
   }
 
+  getDrillByIdUA(id: number): Observable<any> {
+    return this.http.get(`${this.apiURL}/cjtut/drill/ua/${id}`)
+      .pipe(
+        map( el => JSON.parse(JSON.stringify(el))),
+        catchError( e => of(e) )
+      );
+
+  }
+
 }
