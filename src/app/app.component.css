@@ -40,8 +40,7 @@
   grid-template-columns: 1fr;
   grid-template-areas:
     'info'
-    'drill'
-    'keyboard';
+    'drill-n-board';
 }
 
 .tut-lesson-info {
@@ -91,13 +90,21 @@
 }
 
 .tut-lesson-drill {
-  grid-area: drill;
+  /*grid-area: drill;*/
   border: 1px solid red;
+  flex: 1 0 0;
 }
 
 .tut-lesson-keyboard {
-  grid-area: keyboard;
+  /*grid-area: keyboard;*/
   border: 1px solid green;
+  flex: 1 0 0;
+}
+
+.tut-drill-n-board {
+  grid-area: drill-n-board;
+  display: flex;
+  flex-direction: column;
 }
 
 /* contents start */

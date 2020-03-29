@@ -155,12 +155,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   toggleDrill(): void {
-    console.log('toggleDrill');
     this.contStates.drillBlock = !this.contStates.drillBlock;
   }
 
   toggleKB(): void {
-    console.log('toggleKB');
     this.contStates.kBoard = !this.contStates.kBoard;
   }
 

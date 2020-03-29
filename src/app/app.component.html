@@ -21,8 +21,8 @@
         {{buttonTitleID.nxt}}. {{buttonTitles.nxt | slice : 0 : 33}}
       </button>
 
-      <button id="tut-btn-kb" class="tut-btn lang_cyr"> Клавіатура <span class="tut-btn-icon">👐</span> </button>
-      <button id="tut-btn-drill" class="tut-btn lang_cyr"> Вправи <span class="tut-btn-icon">✍</span> </button>
+      <button (click)="toggleKB()" id="tut-btn-kb" class="tut-btn lang_cyr"> Клавіатура <span class="tut-btn-icon">👐</span> </button>
+      <button (click)="toggleDrill()" id="tut-btn-drill" class="tut-btn lang_cyr"> Вправи <span class="tut-btn-icon">✍</span> </button>
       <button id="tut-btn-more" class="tut-btn lang_cyr"> Ще про ЦанЦзє <span class="tut-btn-icon">🈴</span></button>
 
     </div>
@@ -43,8 +43,19 @@
       Кількість вправ: {{drillNumber}}
     </div>
 
-    <div *ngIf="contStates.drillBlock" class="tut-lesson-drill">DRILL</div>
-    <div *ngIf="contStates.kBoard" class="tut-lesson-keyboard">KEYBOARD</div>
+    <div class="tut-drill-n-board">
+
+      <div *ngIf="contStates.kBoard" class="tut-lesson-keyboard">KEYBOARD</div>
+
+      <div *ngIf="contStates.drillBlock && curDrills.length" class="tut-lesson-drill">
+        {{curDrills[0]['ua'] | json }}
+      </div>
+      <div *ngIf="contStates.drillBlock && !curDrills.length">
+        Вправи відсутні
+      </div>
+
+
+    </div>
 
   </div>
 </div>
