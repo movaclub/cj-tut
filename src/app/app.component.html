@@ -21,9 +21,11 @@
         {{buttonTitleID.nxt}}. {{buttonTitles.nxt | slice : 0 : 33}}
       </button>
 
-      <button (click)="toggleKB()" id="tut-btn-kb" class="tut-btn lang_cyr"> Клавіатура <span class="tut-btn-icon">👐</span> </button>
-      <button (click)="toggleDrill()" id="tut-btn-drill" class="tut-btn lang_cyr"> Вправи <span class="tut-btn-icon">✍</span> </button>
-      <button id="tut-btn-more" class="tut-btn lang_cyr"> Ще про ЦанЦзє <span class="tut-btn-icon">🈴</span></button>
+      <button (click)="toggleDrill()" id="tut-btn-drill" class="tut-btn lang_cyr" [disabled]="!drillNumber">
+        Вправи: <span class="tut-btn-icon">{{drillNumber ? drillNumber : '-'}}</span>
+      </button>
+
+<!--      <button id="tut-btn-more" class="tut-btn lang_cyr"> Ще про ЦанЦзє <span class="tut-btn-icon">🈴</span></button>-->
 
     </div>
 
@@ -39,21 +41,13 @@
     </div>
 
     <div *ngIf="contStates.infoBlock" [innerHTML]="(curInfoBlock | async)?.cjInfo | safe" class="tut-lesson-info"></div>
-    <div *ngIf="contStates.infoBlock" class="tut-drill-info-bar">
-      Кількість вправ: {{drillNumber}}
-    </div>
 
     <div class="tut-drill-n-board">
 
-      <div *ngIf="contStates.kBoard" class="tut-lesson-keyboard">KEYBOARD</div>
-
       <div *ngIf="contStates.drillBlock && curDrills.length" class="tut-lesson-drill">
+        <div class="tut-lesson-keyboard">KEYBOARD</div>
         {{curDrills[0]['ua'] | json }}
       </div>
-      <div *ngIf="contStates.drillBlock && !curDrills.length">
-        Вправи відсутні
-      </div>
-
 
     </div>
 

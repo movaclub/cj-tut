@@ -9,7 +9,7 @@ import {EMPTY, Observable, of, Subscription} from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  contStates: {content: boolean; infoBlock: boolean; drillBlock: boolean; kBoard: boolean; };
+  contStates: {content: boolean; infoBlock: boolean; drillBlock: boolean;};
   contentUA: Observable<{OK: boolean; contents: []}>;
   curInfoBlock: Observable<{ OK: boolean; cjInfo: string; }>;
   curInfoBlockId: number;
@@ -36,8 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.contStates = {
       content: false,
       infoBlock: true,
-      drillBlock: false,
-      kBoard: false,
+      drillBlock: false
     };
 
     if ( localStorage.getItem('contentUA') === null ) {
@@ -85,8 +84,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.contStates = {
       content: false,
       infoBlock: true,
-      drillBlock: false,
-      kBoard: false,
+      drillBlock: false
     };
     this.setButtonTitleIDs(id);
     this.setButtonTitles();
@@ -96,8 +94,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.contStates = {
       content: true,
       infoBlock: false,
-      drillBlock: false,
-      kBoard: false,
+      drillBlock: false
     };
   }
 
@@ -106,8 +103,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.contStates = {
       content: false,
       infoBlock: true,
-      drillBlock: false,
-      kBoard: false,
+      drillBlock: false
     };
     this.setButtonTitleIDs(this.buttonTitleID.nxt);
     this.setButtonTitles();
@@ -118,8 +114,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.contStates = {
       content: false,
       infoBlock: true,
-      drillBlock: false,
-      kBoard: false,
+      drillBlock: false
     };
     this.setButtonTitleIDs(this.buttonTitleID.prv);
     this.setButtonTitles();
@@ -129,8 +124,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.contStates = {
       content: false,
       infoBlock: true,
-      drillBlock: false,
-      kBoard: false,
+      drillBlock: false
     };
     this.setButtonTitleIDs(this.buttonTitleID.cur);
   }
@@ -158,9 +152,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this.contStates.drillBlock = !this.contStates.drillBlock;
   }
 
-  toggleKB(): void {
-    this.contStates.kBoard = !this.contStates.kBoard;
-  }
+  // toggleKB(): void {
+  //   this.contStates.kBoard = !this.contStates.kBoard;
+  // }
 
   ngOnDestroy(): void {
     this.uaContSubs.unsubscribe();

@@ -40,9 +40,37 @@ a:hover { cursor: pointer; }
   min-height: 45px;
   min-width: 50vw;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-content: space-evenly;
   border-bottom: 1px solid rgba(237, 32, 36, .69);
+}
+
+.cj-tut-logo {
+  flex: 7 0 0;
+}
+
+.more-on-cj {
+  display: block;
+  padding: 1.02rem;
+  flex: 1 0 0;
+  font-size: .981rem;
+  font-weight: 600;
+  text-align: end;
+  color: rgba(237, 32, 36, .69);
+}
+.more-on-cj:hover {
+  color: rgba(237, 32, 36, .99);
+}
+
+.cj-title {
+  padding: 10px;
+  flex: 2 0 0;
+  text-align: end;
+  color: var(--cj26-color);
+  -webkit-text-stroke: 1px var(--cj26-color);
+  -webkit-text-fill-color: white;
+  font-size: 1.485rem;
+  font-weight: 300;
+  opacity: .69;
 }
 .area {
   grid-area: area;
@@ -67,11 +95,3 @@ a:hover { cursor: pointer; }
   height: auto;
 }
 
-.cj-title {
-  color: var(--cj26-color);
-  -webkit-text-stroke: 1px var(--cj26-color);
-  -webkit-text-fill-color: white;
-  font-size: 1.485rem;
-  font-weight: 300;
-  opacity: .69;
-}
