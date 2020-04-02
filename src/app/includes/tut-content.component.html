@@ -1,0 +1,8 @@
+<div *ngFor="let cont of (contentUA | async)?.contents; let i = index;" class="content-cell lang_cyr" (click)="showInfoByContent(i+1)">
+  <div class="cont-number">
+    {{cont["id"]+1}}
+  </div>
+  <div class="cont-section">
+    {{cont["ua"]}}
+  </div>
+</div>

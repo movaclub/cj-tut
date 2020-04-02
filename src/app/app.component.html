@@ -8,36 +8,27 @@
       </button>
 
       <button (click)="showInfoPrv()" id="tut-btn-lessn-prev" class="tut-btn lang_cyr">
-        {{buttonTitleID.prv}}. {{buttonTitles.prv | slice : 0 : 33}}
+        {{buttonTitleID.prv}}. {{buttonTitles.prv | slice : 0 : 44}}
         <span class="tut-btn-icon">👈</span>
       </button>
 
       <button (click)="showInfo()" id="tut-btn-lessn-curr" class="tut-btn lang_cyr">
-        <span class="tut-btn-icon">👌</span> {{buttonTitleID.cur}}. {{buttonTitles.cur | slice : 0 : 33}}
+        <span class="tut-btn-icon">👌</span> {{buttonTitleID.cur}}. {{buttonTitles.cur | slice : 0 : 44}}
       </button>
 
       <button (click)="showInfoNxt()" id="tut-btn-lessn-next" class="tut-btn lang_cyr">
         <span class="tut-btn-icon">👉</span>
-        {{buttonTitleID.nxt}}. {{buttonTitles.nxt | slice : 0 : 33}}
+        {{buttonTitleID.nxt}}. {{buttonTitles.nxt | slice : 0 : 44}}
       </button>
 
       <button (click)="toggleDrill()" id="tut-btn-drill" class="tut-btn lang_cyr" [disabled]="!drillNumber">
         Вправи: <span class="tut-btn-icon">{{drillNumber ? drillNumber : '-'}}</span>
       </button>
 
-<!--      <button id="tut-btn-more" class="tut-btn lang_cyr"> Ще про ЦанЦзє <span class="tut-btn-icon">🈴</span></button>-->
-
     </div>
 
-    <div *ngIf="contStates.content" class="content-grid">
-      <div *ngFor="let cont of (contentUA | async)?.contents; let i = index;" class="content-cell lang_cyr" (click)="showInfoByContent(i+1)">
-        <div class="cont-number">
-          {{cont["id"]+1}}
-        </div>
-        <div class="cont-section">
-          {{cont["ua"]}}
-        </div>
-      </div>
+    <div *ngIf="contStates.content">
+      <app-tut-content class="content-grid"></app-tut-content>
     </div>
 
     <div *ngIf="contStates.infoBlock" [innerHTML]="(curInfoBlock | async)?.cjInfo | safe" class="tut-lesson-info"></div>

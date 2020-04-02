@@ -45,13 +45,13 @@ a:hover { cursor: pointer; }
 }
 
 .cj-tut-logo {
-  flex: 7 0 0;
+  flex: 1 0 0;
 }
 
 .more-on-cj {
   display: block;
   padding: 1.02rem;
-  flex: 1 0 0;
+  flex: 5 0 0;
   font-size: .981rem;
   font-weight: 600;
   text-align: end;
@@ -63,7 +63,7 @@ a:hover { cursor: pointer; }
 
 .cj-title {
   padding: 10px;
-  flex: 2 0 0;
+  flex: 3 0 0;
   text-align: end;
   color: var(--cj26-color);
   -webkit-text-stroke: 1px var(--cj26-color);

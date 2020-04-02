@@ -103,34 +103,6 @@
   align-content: center;
 }
 
-.content-cell {
-  max-height: max-content;
-  margin: 1px;
-  min-width: 20vw;
-  display: flex;
-  flex-direction: row;
-  border-radius: .55rem;
-  border: 1px solid rgba(237, 32, 36, .22);
-  align-content: flex-start;
-  align-items: flex-start;
-  justify-content: space-between;
-  cursor: pointer;
-  font-size: 93%;
-}
-.content-cell:hover {
-  background-color: var(--cj26-color);
-  color: snow;
-}
-
-.cont-number {
-  flex: 1 0 0;
-}
-
-.cont-section {
-  flex: 9 0 0;
-  text-align: left;
-}
-
 /* contents end */
 
 /* buttons */
