@@ -1,5 +1,5 @@
 :root{
-  scrollbar-color: rgb(237, 32, 36) !important;
+  scrollbar-color: rgb(237, 32, 36) !important; /* #ed2024 */
   scrollbar-width: thin !important;
 }
 .tut-grid {
