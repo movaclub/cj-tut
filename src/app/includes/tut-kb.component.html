@@ -1,1 +1,14 @@
-<p>tut-kb works!</p>
+<div class="kb-layout">
+  <div class="kb-layout-top">
+    <button *ngFor="let k1 of keyboard[kblayout]['1']" class="kbtn">{{k1.toUpperCase()}}</button>
+  </div>
+  <div class="kb-layout-middle">
+    <button *ngFor="let k2 of keyboard[kblayout]['2']" class="kbtn">{{k2.toUpperCase()}}</button>
+  </div>
+  <div class="kb-layout-bottom">
+    <button *ngFor="let k3 of keyboard[kblayout]['3']" class="kbtn">{{k3.toUpperCase()}}</button>
+  </div>
+  <div class="kb-layout-toggler">
+    <button (click)="toggleKeyboard()" class="kbtn">{{kblayoutshow}}</button>
+  </div>
+</div>

@@ -75,6 +75,13 @@
   color: snow;
 }
 
+.tut-drill-ua-txt {
+  text-align: left;
+}
+.tut-drill-ua-txt li {
+  border-bottom: 1px solid #CCCCCC;
+}
+
 .tut-lesson-drill {
   /*grid-area: drill;*/
   border: 1px solid red;

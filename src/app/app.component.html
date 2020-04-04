@@ -36,8 +36,16 @@
     <div class="tut-drill-n-board">
 
       <div *ngIf="contStates.drillBlock && curDrills.length" class="tut-lesson-drill">
-        <div class="tut-lesson-keyboard">KEYBOARD</div>
-        {{curDrills[0]['ua'] | json }}
+        <ol class="tut-drill-ua-txt">
+          <li *ngFor="let el of curDrills; let i = index;">
+            {{i+1}}) {{el['ua']}}
+          </li>
+        </ol>
+        <div>
+          <input>
+        </div>
+<!--        {{curDrills | json }}-->
+        <app-tut-kb></app-tut-kb>
       </div>
 
     </div>

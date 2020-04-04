@@ -13,11 +13,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   contStates: {content: boolean; infoBlock: boolean; drillBlock: boolean; };
   curInfoBlock: Observable<{ OK: boolean; cjInfo: string; }>;
+  UAcont: Observable<any>;
   curInfoBlockId: number;
   drillNumber: number;
   curDrills: [];
 
   curDrillSubs: Subscription;
+  uaContSubs: Subscription;
 
   buttonTitleID: {prv: number; cur: number; nxt: number}; // nav bar button title IDs
   buttonTitles: {prv: string; cur: string; nxt: string};  // nav bar button title
@@ -44,10 +46,20 @@ export class AppComponent implements OnInit, OnDestroy {
         this.contStates.infoBlock = curVals.infoBlock;
         this.contStates.drillBlock = curVals.drillBlock;
         this.curInfoBlock = this.api.getContentByIdUA(this.curInfoBlockId);
-        this.storageContent = JSON.parse( localStorage.getItem('contentUA')).contents;
+        if ( localStorage.getItem('contentUA') === null ) {
+          this.UAcont = this.api.getContentsUA();
+          this.uaContSubs = this.UAcont
+            .subscribe( cont => {
+              this.storageContent = cont;
+              localStorage.setItem('contentUA', JSON.stringify(cont));
+            });
+        } else {
+          this.storageContent = JSON.parse( localStorage.getItem('contentUA')).contents;
+        }
+        // this.storageContent = JSON.parse( localStorage.getItem('contentUA')).contents;
         this.setButtonTitleIDs(this.curInfoBlockId);
         this.setButtonTitles();
-      } );
+      });
     // this.curInfoBlock = this.api.getContentByIdUA(this.curInfoBlockId);
     // this.storageContent = JSON.parse( localStorage.getItem('contentUA')).contents;
     // this.setButtonTitleIDs(this.curInfoBlockId);
@@ -149,6 +161,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.curDrillSubs.unsubscribe();
+    this.uaContSubs.unsubscribe();
   }
 
 }
