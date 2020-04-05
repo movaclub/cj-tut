@@ -8,17 +8,17 @@
       </button>
 
       <button (click)="showInfoPrv()" id="tut-btn-lessn-prev" class="tut-btn lang_cyr">
-        {{buttonTitleID.prv}}. {{buttonTitles.prv | slice : 0 : 44}}
+        {{buttonTitleID?.prv}}. {{buttonTitles?.prv | slice : 0 : 44}}
         <span class="tut-btn-icon">👈</span>
       </button>
 
       <button (click)="showInfo()" id="tut-btn-lessn-curr" class="tut-btn lang_cyr">
-        <span class="tut-btn-icon">👌</span> {{buttonTitleID.cur}}. {{buttonTitles.cur | slice : 0 : 44}}
+        <span class="tut-btn-icon">👌</span> {{buttonTitleID?.cur}}. {{buttonTitles?.cur | slice : 0 : 44}}
       </button>
 
       <button (click)="showInfoNxt()" id="tut-btn-lessn-next" class="tut-btn lang_cyr">
         <span class="tut-btn-icon">👉</span>
-        {{buttonTitleID.nxt}}. {{buttonTitles.nxt | slice : 0 : 44}}
+        {{buttonTitleID?.nxt}}. {{buttonTitles?.nxt | slice : 0 : 44}}
       </button>
 
       <button (click)="toggleDrill()" id="tut-btn-drill" class="tut-btn lang_cyr" [disabled]="!drillNumber">
@@ -35,16 +35,20 @@
 
     <div class="tut-drill-n-board">
 
-      <div *ngIf="contStates.drillBlock && curDrills.length" class="tut-lesson-drill">
+      <div *ngIf="curDrills.length && !contStates.infoBlock && !contStates.content" class="tut-lesson-drill">
         <ol class="tut-drill-ua-txt">
           <li *ngFor="let el of curDrills; let i = index;">
             {{i+1}}) {{el['ua']}}
           </li>
         </ol>
-        <div>
-          <input>
+        <div class="drill-input">
+          <ol class="tut-drill-ua-txt">
+            <li *ngFor="let el of curDrills; let i = index;">
+              {{i+1}}) {{el['task'] | json}}
+            </li>
+          </ol>
         </div>
-<!--        {{curDrills | json }}-->
+
         <app-tut-kb></app-tut-kb>
       </div>
 

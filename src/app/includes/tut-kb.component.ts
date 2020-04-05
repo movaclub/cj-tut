@@ -18,6 +18,7 @@ export class TutKbComponent implements OnInit {
 
   ngOnInit() {
     this.keyboard = this.myKeyboardService.getKeyboards();
+    this.keyboard = this.myKeyboardService.getKeyboards();
     this.keymap = this.myKeyMaps.getKeyMaps();
     // console.log('keymap: ', this.keymap);
 

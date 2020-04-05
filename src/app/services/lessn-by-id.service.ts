@@ -11,7 +11,6 @@ export class LessnByIdService { // send picked lesson ID to parent component
   currentVals = {
     content: false,
     infoBlock: true,
-    drillBlock: false,
     curLessonID: 1
   };
 
@@ -20,7 +19,7 @@ export class LessnByIdService { // send picked lesson ID to parent component
   constructor() { }
 
   changeCurLessnID(id: number): void {
-    // console.log('changeCurLessnID-id: ', id);
+    console.log('changeCurLessnID-id: ', id);
     this.currentVals.curLessonID = id;
     this.currentVals.content = false;
     this.currentVals.infoBlock = true;

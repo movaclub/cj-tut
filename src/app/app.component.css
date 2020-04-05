@@ -66,16 +66,9 @@
 
 /* scrollbar styling */
 
-.tut-drill-info-bar {
-  height: 3.01vh;
-  font-size: 1.13em;
-  border-radius: 3px;
-  border-top: 2px solid rgba(237, 32, 36, .88);
-  background: linear-gradient(rgba(237, 32, 36, .55), rgba(237, 32, 36, .99));
-  color: snow;
-}
-
 .tut-drill-ua-txt {
+  min-height: 22vh;
+  height: 22vh;
   text-align: left;
 }
 .tut-drill-ua-txt li {
@@ -83,18 +76,11 @@
 }
 
 .tut-lesson-drill {
-  /*grid-area: drill;*/
-  border: 1px solid red;
-  flex: 1 0 0;
-}
-
-.tut-lesson-keyboard {
-  /*grid-area: keyboard;*/
-  border: 1px solid green;
   flex: 1 0 0;
 }
 
 .tut-drill-n-board {
+  min-height: 100%;
   grid-area: drill-n-board;
   display: flex;
   flex-direction: column;
@@ -174,3 +160,14 @@
 }
 
 /* buttons */
+
+/* drill input */
+
+.drill-input {
+  border-top: 1px solid var(--cj26-color);
+  border-bottom: 1px solid var(--cj26-color);
+  min-height:22vh;
+  height:22vh;
+}
+
+/* drill input */
