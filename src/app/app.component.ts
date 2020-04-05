@@ -137,7 +137,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if ( curDrillIndex > 0 && curDrillIndex < 99 ) {
       this.curDrillSubs = this.api.getDrillByIdUA(curDrillIndex)
         .subscribe( drill => {
-          console.log( 'DRILLz: ', drill);
+          // console.log( 'DRILLz: ', drill);
           if ( typeof drill.drills !== 'undefined' && drill.drills.length > 0 ) {
             this.curDrills = drill.drills;
             this.drillNumber = this.curDrills.length;

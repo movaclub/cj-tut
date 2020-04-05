@@ -14,6 +14,7 @@
   justify-content: space-between;
   cursor: pointer;
   font-size: 93%;
+  transition: all 444ms;
 }
 .content-cell:hover {
   background-color: var(--cj26-color);

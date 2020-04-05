@@ -122,6 +122,12 @@
 
 #tut-btn-lessn-prev, #tut-btn-lessn-curr, #tut-btn-lessn-next {
   flex: 3 0 0;
+  /* Avoids text being rendered outside the container */
+  overflow: hidden;
+  /* Avoid text going to multiple lines */
+  white-space: nowrap;
+  /* Sets the ... once the text overflows */
+  text-overflow: ellipsis;
 }
 
 .tut-btn {
@@ -129,7 +135,7 @@
   background-color: rgba(237, 32, 36, .69);
   border-radius:.44rem;
   border: 1px solid rgba(237, 32, 36, .99);;
-  display:flex;
+  display:inline-block;
   flex-direction: row;
   cursor:pointer;
   color: snow;
@@ -137,8 +143,10 @@
   font-weight: 500;
   padding:5px;
   text-decoration:none;
-  min-height: 3.5vh;
-  max-height: 4.1vh;
+  min-height: 4.5vh;
+  max-height: 5.9vh;
+  width: 444px;
+  transition: all 444ms;
 }
 .tut-btn:hover {
   background-color:#ed2023;
@@ -171,3 +179,37 @@
 }
 
 /* drill input */
+
+
+/* drill txt */
+.drill-btn-txt {
+  border : solid 1px #ed2023;
+  border-radius : 20px 3px 20px 4px ;
+  moz-border-radius : 20px 3px 20px 4px ;
+  font-size : 0.9813rem;
+  color : darkred;
+  padding : 2px 18px;
+  background : rgba(237, 32, 36, .22);
+  background : -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e88e8f), color-stop(100%,#ed2023));
+  background : -moz-linear-gradient(top, #e88e8f 0%, #ed2023 100%);
+  background : -webkit-linear-gradient(top, #e88e8f 0%, #ed2023 100%);
+  background : -o-linear-gradient(top, #e88e8f 0%, #ed2023 100%);
+  background : -ms-linear-gradient(top, #e88e8f 0%, #ed2023 100%);
+  background : linear-gradient(top, #e88e8f 0%, #ed2023 100%);
+  filter : progid:DXImageTransform.Microsoft.gradient( startColorstr='#e88e8f', endColorstr='#ed2023',GradientType=0 );
+  margin: 15px 0;
+  text-align: left;
+  transition: all 444ms;
+}
+
+.drill-btn-title {
+  background-color: var(--cj26-color); color: snow; padding: 0 3px;
+}
+
+.drill-btn-txt:hover {
+  color: snow;
+  background-color: var(--cj26-color);
+  cursor: pointer;
+}
+
+/* drill txt */
