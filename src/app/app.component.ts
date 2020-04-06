@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription} from 'rxjs';
+import {Observable, Subject, Subscription} from 'rxjs';
+import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import { ApiService } from './services/api.service';
 import { LessnByIdService } from './services/lessn-by-id.service';
 import { CurVals } from './interfaces/curvals';
@@ -18,10 +19,13 @@ export class AppComponent implements OnInit, OnDestroy {
   drillNumber: number;
   curDrills: [];
   curDrillId: number; // show a selected drill
+  userInput: string; // user drill code input
+  userInputChanged: Subject<string> = new Subject<string>();
 
   curDrillSubs: Subscription;
   uaContSubs: Subscription;
   curLessnSubs: Subscription;
+  usrInputChangedSubs: Subscription;
 
   buttonTitleID: {prv: number; cur: number; nxt: number}; // nav bar button title IDs
   buttonTitles: {prv: string; cur: string; nxt: string};  // nav bar button title
@@ -34,6 +38,16 @@ export class AppComponent implements OnInit, OnDestroy {
     this.curDrills = [];
     this.curInfoBlockId = 1; // 1st time load info block
     this.curDrillId = 0; // 1st time load drill number -> showDrillById(id: number)
+    this.userInput = '';
+    this.usrInputChangedSubs = this.userInputChanged
+      .pipe(
+        debounceTime(222),
+        distinctUntilChanged()
+      )
+      .subscribe(
+        txtInput => this.userInput = txtInput.toUpperCase()
+      );
+
   }
 
   ngOnInit(): void {
@@ -163,10 +177,16 @@ export class AppComponent implements OnInit, OnDestroy {
     };
   }
 
+  getUserInput(txtInput: string): void {
+    this.userInputChanged.next(txtInput);
+    console.log('usrINPUT: ', this.userInput);
+  }
+
   ngOnDestroy(): void {
     this.curDrillSubs.unsubscribe();
     this.uaContSubs.unsubscribe();
     this.curLessnSubs.unsubscribe();
+    this.usrInputChangedSubs.unsubscribe();
   }
 
 }

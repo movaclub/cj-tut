@@ -6,17 +6,21 @@ import { MyKeyboardService } from './services/keyboard.service';
 import { AppComponent } from './app.component';
 import { TutContentComponent } from './includes/tut-content.component';
 import { TutKbComponent } from './includes/tut-kb.component';
+import {FormsModule} from '@angular/forms';
+import { TxtInputFocusDirective } from './pipes/txt-input-focus.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     SafeHTML,
     TutContentComponent,
-    TutKbComponent
+    TutKbComponent,
+    TxtInputFocusDirective
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [MyKeyboardService],
   bootstrap: [AppComponent]

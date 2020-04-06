@@ -212,3 +212,51 @@
 }
 
 /* drill txt */
+
+/* drill task */
+.drill-display {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+}
+.drill-hi {
+  flex: 1 0 0;
+  display: flex;
+}
+.drill-hi-item {
+  flex: 1 0 0;
+}
+.drill-code {
+  flex: 1 0 0;
+  display: flex;
+}
+.drill-code-item {
+  flex: 1 0 0;
+}
+.drill-user-input {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+.drill-css-input {
+  flex: 1 0 0;
+  justify-content: center;
+  width: 5.5rem;
+  padding: 7px;
+  font-size: 26px;
+  border-width: 1px;
+  border-color: #ed2024;
+  background-color: #ffffff;
+  color: #000000;
+  border-style: ridge;
+  border-radius: 5px;
+  box-shadow: 1px 0px 5px rgba(214,126,129,.75);
+  text-shadow: 0px 0px 5px rgba(165,97,97,.67);
+  text-align: center;
+}
+.drill-css-input:focus {
+  outline:none;
+}
+
+/* drill task */
