@@ -46,9 +46,11 @@
           </button>
         </div>
         <div class="drill-input">
-          <div class="tut-drill-ua-txt">
-            <div *ngFor="let el of curDrills; let i = index;">
-              <div *ngIf="curDrillId === i">{{i+1}}) {{el['task'] | json}}</div>
+          <div *ngFor="let el of curDrills; let i = index;"><!-- { "zh": "日", "en": "a" }-->
+            <div *ngIf="curDrillId === i">
+              <span *ngFor="let z of el['task']; let y = index;" class="lang_zh">
+                {{z.zh}}
+              </span>
             </div>
           </div>
         </div>
