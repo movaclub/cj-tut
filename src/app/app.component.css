@@ -211,5 +211,10 @@
   background-color: var(--cj26-color);
   cursor: pointer;
 }
+.active {
+  color: snow;
+  background-color: var(--cj26-color);
+  cursor: pointer;
+}
 
 /* drill txt */

@@ -37,16 +37,20 @@
 
       <div *ngIf="curDrills.length && !contStates.infoBlock && !contStates.content" class="tut-lesson-drill">
         <div class="tut-drill-ua-txt">
-          <button *ngFor="let el of curDrills; let i = index;" class="drill-btn-txt lang_cyr">
+          <button
+            *ngFor="let el of curDrills; let i = index;"
+            (click)="showDrillById(i)"
+            [ngClass]="{ 'active' : curDrillId === i}"
+            class="drill-btn-txt lang_cyr">
             <span class="drill-btn-title">Вправа {{i+1}}:</span> {{el['ua']}}
           </button>
         </div>
         <div class="drill-input">
-          <ol class="tut-drill-ua-txt">
-            <li *ngFor="let el of curDrills; let i = index;">
-              {{i+1}}) {{el['task'] | json}}
-            </li>
-          </ol>
+          <div class="tut-drill-ua-txt">
+            <div *ngFor="let el of curDrills; let i = index;">
+              <div *ngIf="curDrillId === i">{{i+1}}) {{el['task'] | json}}</div>
+            </div>
+          </div>
         </div>
 
         <app-tut-kb></app-tut-kb>

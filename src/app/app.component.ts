@@ -17,6 +17,7 @@ export class AppComponent implements OnInit, OnDestroy {
   curInfoBlockId: number;
   drillNumber: number;
   curDrills: [];
+  curDrillId: number; // show a selected drill
 
   curDrillSubs: Subscription;
   uaContSubs: Subscription;
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.drillNumber = 0;
     this.curDrills = [];
     this.curInfoBlockId = 1; // 1st time load info block
+    this.curDrillId = 0; // 1st time load drill number -> showDrillById(id: number)
   }
 
   ngOnInit(): void {
@@ -93,6 +95,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.buttonTitles.cur = this.storageContent.contents[this.buttonTitleID.cur - 1].ua;
     this.buttonTitles.nxt = this.storageContent.contents[this.buttonTitleID.nxt - 1].ua;
     this.getCurInfoDrill(this.buttonTitleID.cur);
+    this.curDrillId = 0; // if we change a lesson
   }
 
   showContent(): void {
@@ -147,6 +150,10 @@ export class AppComponent implements OnInit, OnDestroy {
           }
         });
     }
+  }
+
+  showDrillById(id: number): void {
+    this.curDrillId = id;
   }
 
   toggleDrill(): void {
