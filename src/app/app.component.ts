@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {Observable, Subject, Subscription} from 'rxjs';
-import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import {catchError, debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
 import { ApiService } from './services/api.service';
 import { LessnByIdService } from './services/lessn-by-id.service';
 import { CurVals } from './interfaces/curvals';
@@ -41,11 +41,14 @@ export class AppComponent implements OnInit, OnDestroy {
     this.userInput = '';
     this.usrInputChangedSubs = this.userInputChanged
       .pipe(
-        debounceTime(222),
+        debounceTime(444),
         distinctUntilChanged()
       )
       .subscribe(
-        txtInput => this.userInput = txtInput.toUpperCase()
+        txtInput => {
+          console.log('txtInput: ', txtInput);
+          this.userInput = txtInput.toUpperCase();
+        }
       );
 
   }
@@ -90,16 +93,16 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   setButtonTitleIDs(curInfoBlockId: number): void {
-
+    console.log('setButtonTitleIDs-curInfoBlockId: ', curInfoBlockId);
     if ( curInfoBlockId > 1 && curInfoBlockId < 99 ) { // 99 lessons
       this.buttonTitleID.prv = curInfoBlockId - 1;
       this.buttonTitleID.nxt = curInfoBlockId + 1;
       this.buttonTitleID.cur = curInfoBlockId;
-    } else if ( this.curInfoBlockId === 1) {
+    } else if ( curInfoBlockId === 1) {
       this.buttonTitleID.prv = curInfoBlockId;
       this.buttonTitleID.nxt = curInfoBlockId + 1;
       this.buttonTitleID.cur = curInfoBlockId;
-    } else if ( this.curInfoBlockId === 99 ) {
+    } else if ( curInfoBlockId === 99 ) {
       this.buttonTitleID.prv = curInfoBlockId - 1;
       this.buttonTitleID.nxt = 1;
       this.buttonTitleID.cur = curInfoBlockId;
@@ -126,6 +129,7 @@ export class AppComponent implements OnInit, OnDestroy {
       infoBlock: true
     };
     this.setButtonTitleIDs(this.buttonTitleID.nxt);
+    console.log('showInfoNxt-buttonTitleID (after): ', this.buttonTitleID);
     this.getCurInfoDrill(this.buttonTitleID.cur);
   }
 
@@ -178,8 +182,13 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   getUserInput(txtInput: string): void {
-    this.userInputChanged.next(txtInput);
-    console.log('usrINPUT: ', this.userInput);
+    if ( /[a-zA-Z]{1,5}/.test(txtInput) ) {
+      this.userInputChanged.next(txtInput);
+      console.log('usrINPUT: ', this.userInput);
+    } else {
+      this.userInput = '';
+      this.userInputChanged.next('');
+    }
   }
 
   ngOnDestroy(): void {

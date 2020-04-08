@@ -220,20 +220,35 @@
   flex-direction: column;
 }
 .drill-hi {
-  flex: 1 0 0;
   display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .drill-hi-item {
-  flex: 1 0 0;
+  flex: 1;
+  box-sizing: border-box;
+  min-width: 1.69em;
+  font-size: 2em;
+  font-weight: 500;
+  color: darkgreen;
 }
 .drill-code {
-  flex: 1 0 0;
   display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .drill-code-item {
-  flex: 1 0 0;
+  flex: 1;
+  box-sizing: border-box;
+  min-width: .11em;
+  font-size: 1.1em;
+  color: forestgreen;
+  font-weight: 100;
 }
 .drill-user-input {
+  margin-top: .48em;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -242,7 +257,7 @@
 .drill-css-input {
   flex: 1 0 0;
   justify-content: center;
-  width: 5.5rem;
+  width: 5.5em;
   padding: 7px;
   font-size: 26px;
   border-width: 1px;

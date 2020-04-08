@@ -51,25 +51,22 @@
 
               <!-- zh -->
               <div class="drill-hi">
-                <span *ngFor="let z of el['task']; let k = index;" class="drill-hi-item lang_zh">
-                  {{z.zh}}
-                </span>
+                <div *ngFor="let z of el['task']; let k = index;">
+                  <div class="drill-hi-item lang_zh">{{z.zh}}</div>
+                  <div class="drill-code-item lang_en">{{z.en.toUpperCase()}}</div>
+                </div>
               </div>
-              <!-- codes -->
-              <div class="drill-code">
-                <span *ngFor="let e of el['task']; let c = index;" class="drill-code-item lang_en">
-                  {{e.en.toUpperCase()}}
-                </span>
-              </div>
+
               <!-- current element input -->
               <div class="drill-user-input">
                 <input
                   maxlength="5"
                   spellcheck="false"
+                  pattern="[A-Za-z]{1,5}"
                   (ngModelChange)="getUserInput($event)"
                   [(ngModel)]="userInput"
                   type="text"
-                  class="drill-css-input" appTxtInputFocus />
+                  class="drill-css-input" appTxtInputFocus required />
               </div>
 
             </div>
