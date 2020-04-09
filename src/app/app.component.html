@@ -49,11 +49,17 @@
           <div *ngFor="let el of curDrills; let i = index;"><!-- { "zh": "日", "en": "a" }-->
             <div *ngIf="curDrillId === i" class="drill-display">
 
-              <!-- zh -->
-              <div class="drill-hi">
-                <div *ngFor="let z of el['task']; let k = index;">
-                  <div class="drill-hi-item lang_zh">{{z.zh}}</div>
-                  <div class="drill-code-item lang_en">{{z.en.toUpperCase()}}</div>
+              <!-- upper row -->
+              <div class="empty-row">
+                <div class="empty-row-item">empty top</div>
+                <!-- zh -->
+                <div class="drill-hi empty-row-item">
+<!--                  <div *ngFor="let z of el['task'] | slice: 0 : 5; let k = index;">-->
+                  <div *ngFor="let z of el['task']; let k = index; first as isFirst">
+                    <div class="drill-hi-item-first lang_zh" *ngIf="isFirst">{{z.zh}}</div>
+                    <div class="drill-hi-item lang_zh" *ngIf="!isFirst">{{z.zh}}</div>
+                    <div class="drill-code-item lang_en" *ngIf="isFirst">{{z.en.toUpperCase()}}</div>
+                  </div>
                 </div>
               </div>
 
@@ -69,6 +75,14 @@
                   class="drill-css-input" appTxtInputFocus required />
               </div>
 
+              <!-- lower row -->
+
+              <div class="empty-row">
+
+                <div class="empty-row-item">OUT</div>
+                <div class="empty-row-item">empty</div>
+
+              </div>
             </div>
 
           </div>

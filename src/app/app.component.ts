@@ -93,7 +93,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   setButtonTitleIDs(curInfoBlockId: number): void {
-    console.log('setButtonTitleIDs-curInfoBlockId: ', curInfoBlockId);
     if ( curInfoBlockId > 1 && curInfoBlockId < 99 ) { // 99 lessons
       this.buttonTitleID.prv = curInfoBlockId - 1;
       this.buttonTitleID.nxt = curInfoBlockId + 1;
