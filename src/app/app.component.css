@@ -218,13 +218,13 @@
   display: flex;
   align-content: flex-start;
   justify-content: flex-start;
-  flex-wrap: wrap;
+  flex: 1.22 0 0;
 }
 .drill-hi-item {
   margin-top: 9px;
   flex: 1;
   box-sizing: border-box;
-  min-width: 1.69em;
+  min-width: 1.25em;
   font-size: .9871em;
   font-weight: 300;
   color: darkgreen;
@@ -251,17 +251,17 @@
   color: forestgreen;
   font-weight: 100;
 }
-.drill-user-input {
-  margin-top: .48em;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-}
+/*.drill-user-input {*/
+/*  margin-top: .48em;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-content: center;*/
+/*  align-items: center;*/
+/*}*/
 .drill-css-input {
-  flex: 1 0 0;
-  justify-content: center;
-  width: 5.5em;
+  flex: .2 0 0;
+  justify-content: flex-start;
+  width: 2.5rem;
   padding: 7px;
   font-size: 26px;
   border-width: 1px;
@@ -272,7 +272,7 @@
   border-radius: 5px;
   box-shadow: 1px 0px 5px rgba(214,126,129,.75);
   text-shadow: 0px 0px 5px rgba(165,97,97,.67);
-  text-align: center;
+  text-align: left;
 }
 .drill-css-input:focus {
   outline:none;
@@ -286,7 +286,6 @@
   flex-direction: row;
 }
 .empty-row-item {
-  flex: 1 0 0;
-  min-width: 0;
+  flex: .75 0 0;
 }
 /* empty rows*/

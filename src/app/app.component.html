@@ -51,11 +51,11 @@
 
               <!-- upper row -->
               <div class="empty-row">
-                <div class="empty-row-item">empty top</div>
+                <div class="empty-row-item"></div>
                 <!-- zh -->
-                <div class="drill-hi empty-row-item">
-<!--                  <div *ngFor="let z of el['task'] | slice: 0 : 5; let k = index;">-->
-                  <div *ngFor="let z of el['task']; let k = index; first as isFirst">
+                <div class="drill-hi">
+                  <!-- <div *ngFor="let z of el['task'] | slice: 0 : 5; let k = index;">-->
+                  <div *ngFor="let z of curDrill; let k = index; first as isFirst">
                     <div class="drill-hi-item-first lang_zh" *ngIf="isFirst">{{z.zh}}</div>
                     <div class="drill-hi-item lang_zh" *ngIf="!isFirst">{{z.zh}}</div>
                     <div class="drill-code-item lang_en" *ngIf="isFirst">{{z.en.toUpperCase()}}</div>
@@ -63,24 +63,27 @@
                 </div>
               </div>
 
-              <!-- current element input -->
-              <div class="drill-user-input">
-                <input
-                  maxlength="5"
-                  spellcheck="false"
-                  pattern="[A-Za-z]{1,5}"
-                  (ngModelChange)="getUserInput($event)"
-                  [(ngModel)]="userInput"
-                  type="text"
-                  class="drill-css-input" appTxtInputFocus required />
+              <div class="empty-row">
+                <div class="empty-row-item"></div>
+                <!-- current element input -->
+                <div class="drill-hi">
+                  <input
+                    maxlength="5"
+                    spellcheck="false"
+                    pattern="[A-Za-z]+"
+                    (ngModelChange)="getUserInput($event)"
+                    [(ngModel)]="userInput"
+                    type="text"
+                    class="drill-css-input" appTxtInputFocus required />
+                </div>
               </div>
 
               <!-- lower row -->
 
               <div class="empty-row">
 
-                <div class="empty-row-item">OUT</div>
-                <div class="empty-row-item">empty</div>
+                <div class="empty-row-item">{{taskDone|json}}</div>
+                <div class="empty-row-item"></div>
 
               </div>
             </div>

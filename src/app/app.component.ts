@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {Observable, Subject, Subscription} from 'rxjs';
-import {catchError, debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
+import {catchError, debounceTime, distinctUntilChanged, filter, map, timeout} from 'rxjs/operators';
 import { ApiService } from './services/api.service';
 import { LessnByIdService } from './services/lessn-by-id.service';
 import { CurVals } from './interfaces/curvals';
@@ -17,7 +17,9 @@ export class AppComponent implements OnInit, OnDestroy {
   UAcont: Observable<any>;
   curInfoBlockId: number;
   drillNumber: number;
-  curDrills: [];
+  curDrills: []; // a lesson drill set
+  curDrill: []; // a current drill shown
+  taskDone: []; // hieroglyphs typed (drill OUTPUT list)
   curDrillId: number; // show a selected drill
   userInput: string; // user drill code input
   userInputChanged: Subject<string> = new Subject<string>();
@@ -36,6 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.buttonTitles = {prv: '', cur: '', nxt: ''};
     this.drillNumber = 0;
     this.curDrills = [];
+    this.taskDone = [];
     this.curInfoBlockId = 1; // 1st time load info block
     this.curDrillId = 0; // 1st time load drill number -> showDrillById(id: number)
     this.userInput = '';
@@ -46,7 +49,7 @@ export class AppComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         txtInput => {
-          console.log('txtInput: ', txtInput);
+          // console.log('txtInput: ', txtInput);
           this.userInput = txtInput.toUpperCase();
         }
       );
@@ -69,7 +72,7 @@ export class AppComponent implements OnInit, OnDestroy {
           this.UAcont = this.api.getContentsUA();
           this.uaContSubs = this.UAcont
             .subscribe( cont => {
-              console.log('uaContSubs-storageContent: ', cont);
+              // console.log('uaContSubs-storageContent: ', cont);
 
               this.buttonTitles.prv = cont.contents[0].ua;
               this.buttonTitles.cur = cont.contents[0].ua;
@@ -112,6 +115,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.buttonTitles.nxt = this.storageContent.contents[this.buttonTitleID.nxt - 1].ua;
     this.getCurInfoDrill(this.buttonTitleID.cur);
     this.curDrillId = 0; // if we change a lesson
+    this.taskDone = []; // also clean the output list
   }
 
   showContent(): void {
@@ -128,7 +132,7 @@ export class AppComponent implements OnInit, OnDestroy {
       infoBlock: true
     };
     this.setButtonTitleIDs(this.buttonTitleID.nxt);
-    console.log('showInfoNxt-buttonTitleID (after): ', this.buttonTitleID);
+    // console.log('showInfoNxt-buttonTitleID (after): ', this.buttonTitleID);
     this.getCurInfoDrill(this.buttonTitleID.cur);
   }
 
@@ -171,6 +175,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
   showDrillById(id: number): void {
     this.curDrillId = id;
+    console.log('curDrillId:', this.curDrillId);
+    this.taskDone = []; // also clean the output list
+    console.log('showDrillById[id]:', this.curDrills[id]['task']);
+    // @ts-ignore
+    this.curDrill = [...this.curDrills[id]['task']];
+    console.log('this.curDrill:', this.curDrill);
   }
 
   toggleDrill(): void {
@@ -178,16 +188,35 @@ export class AppComponent implements OnInit, OnDestroy {
       content: false,
       infoBlock: false
     };
+    this.showDrillById(this.curDrillId);
   }
 
   getUserInput(txtInput: string): void {
-    if ( /[a-zA-Z]{1,5}/.test(txtInput) ) {
-      this.userInputChanged.next(txtInput);
-      console.log('usrINPUT: ', this.userInput);
-    } else {
-      this.userInput = '';
-      this.userInputChanged.next('');
+    // if ( /^[a-zA-Z]{1,5}$/.test(txtInput) ) {
+    console.log('txtInput:', txtInput);
+    const sanitized = txtInput.replace(/[^a-z]/ig, '');
+    console.log('sanitized:', sanitized);
+    this.userInputChanged.next(sanitized);
+    // @ts-ignore
+    if ( sanitized.toUpperCase() === this.curDrill[0]['en'].toUpperCase() ) {
+      console.log('sanitized:', sanitized);
+      console.log('sanitized.toUpperCase():', sanitized.toUpperCase());
+      // @ts-ignore
+      console.log('this.curDrill[0][\'en\'].toUpperCase():', this.curDrill[0]['en'].toUpperCase());
+      const curDone = this.curDrill.splice(0, 1);
+      // @ts-ignore
+      this.taskDone.unshift(curDone);
+      setTimeout(() => {
+        this.userInputChanged.next('');
+      }, 444);
     }
+
+    // this.taskDone.unshift();
+    // console.log('usrINPUT: ', this.userInput);
+    // } else {
+    //   this.userInput = '';
+    //   this.userInputChanged.next('');
+    // }
   }
 
   ngOnDestroy(): void {
