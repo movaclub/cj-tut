@@ -2,6 +2,7 @@
   scrollbar-color: rgb(237, 32, 36) !important; /* #ed2024 */
   scrollbar-width: thin !important;
 }
+
 .tut-grid {
   display: flex;
   flex-direction: column;
@@ -220,6 +221,13 @@
   justify-content: flex-start;
   flex: 1.22 0 0;
 }
+.drill-hi-done {
+  margin-top: 2em;
+  display: flex;
+  align-content: flex-end;
+  justify-content: flex-end;
+  flex: .5 0 0;
+}
 .drill-hi-item {
   margin-top: 9px;
   flex: 1;
@@ -228,6 +236,15 @@
   font-size: .9871em;
   font-weight: 300;
   color: darkgreen;
+}
+.drill-hi-item-done {
+  margin-top: 9px;
+  flex: 1;
+  box-sizing: border-box;
+  min-width: 1.25em;
+  font-size: .9871em;
+  font-weight: 300;
+  color: darkgray;
 }
 .drill-hi-item-first {
   flex: 1;
@@ -249,6 +266,14 @@
   min-width: .11em;
   font-size: 1.1em;
   color: forestgreen;
+  font-weight: 100;
+}
+.drill-code-item-done {
+  flex: 1;
+  box-sizing: border-box;
+  min-width: .11em;
+  font-size: 1.1em;
+  color: darkgray;
   font-weight: 100;
 }
 /*.drill-user-input {*/
@@ -273,6 +298,24 @@
   box-shadow: 1px 0px 5px rgba(214,126,129,.75);
   text-shadow: 0px 0px 5px rgba(165,97,97,.67);
   text-align: left;
+}
+
+.drill-css-input-done {
+  flex: 1 0 0;
+  justify-content: center;
+  min-height: 6rem;
+  width: 2.5rem;
+  padding: 7px;
+  font-size: 1.1em;
+  /*border-width: 1px;*/
+  /*border-color: #ed2024;*/
+  background-color: #ffffff;
+  color: #000000;
+  /*border-style: ridge;*/
+  /*border-radius: 5px;*/
+  /*box-shadow: 1px 0px 5px rgba(214,126,129,.75);*/
+  /*text-shadow: 0px 0px 5px rgba(165,97,97,.67);*/
+  text-align: center;
 }
 .drill-css-input:focus {
   outline:none;

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {Observable, Subject, Subscription} from 'rxjs';
-import {catchError, debounceTime, distinctUntilChanged, filter, map, timeout} from 'rxjs/operators';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ApiService } from './services/api.service';
 import { LessnByIdService } from './services/lessn-by-id.service';
 import { CurVals } from './interfaces/curvals';
@@ -177,9 +177,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.curDrillId = id;
     console.log('curDrillId:', this.curDrillId);
     this.taskDone = []; // also clean the output list
-    console.log('showDrillById[id]:', this.curDrills[id]['task']);
     // @ts-ignore
-    this.curDrill = [...this.curDrills[id]['task']];
+    console.log('showDrillById[id]:', this.curDrills[id].task);
+    // @ts-ignore
+    this.curDrill = [...this.curDrills[id].task];
     console.log('this.curDrill:', this.curDrill);
   }
 
@@ -192,31 +193,24 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   getUserInput(txtInput: string): void {
-    // if ( /^[a-zA-Z]{1,5}$/.test(txtInput) ) {
+
     console.log('txtInput:', txtInput);
     const sanitized = txtInput.replace(/[^a-z]/ig, '');
     console.log('sanitized:', sanitized);
     this.userInputChanged.next(sanitized);
     // @ts-ignore
-    if ( sanitized.toUpperCase() === this.curDrill[0]['en'].toUpperCase() ) {
-      console.log('sanitized:', sanitized);
-      console.log('sanitized.toUpperCase():', sanitized.toUpperCase());
+    if ( sanitized.toUpperCase() === this.curDrill[0].en.toUpperCase() ) {
+
+      const curDone = this.curDrill.splice(0, 1)[0];
       // @ts-ignore
-      console.log('this.curDrill[0][\'en\'].toUpperCase():', this.curDrill[0]['en'].toUpperCase());
-      const curDone = this.curDrill.splice(0, 1);
-      // @ts-ignore
-      this.taskDone.unshift(curDone);
+      this.taskDone.push(curDone);
       setTimeout(() => {
         this.userInputChanged.next('');
-      }, 444);
+        this.userInput = '';
+      }, 333);
+
     }
 
-    // this.taskDone.unshift();
-    // console.log('usrINPUT: ', this.userInput);
-    // } else {
-    //   this.userInput = '';
-    //   this.userInputChanged.next('');
-    // }
   }
 
   ngOnDestroy(): void {

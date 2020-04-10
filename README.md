@@ -1,6 +1,12 @@
 # CjTut
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.18.
+update: version 9.1 already.
+
+## TO-DO
+* Drill number default/active CSS
+* Done entry disappear timeout/animation: new appears too quickly
+* A number of controls, incl. keyboard layout, etc
 
 ## Development server
 

@@ -56,17 +56,17 @@
                 <div class="drill-hi">
                   <!-- <div *ngFor="let z of el['task'] | slice: 0 : 5; let k = index;">-->
                   <div *ngFor="let z of curDrill; let k = index; first as isFirst">
-                    <div class="drill-hi-item-first lang_zh" *ngIf="isFirst">{{z.zh}}</div>
-                    <div class="drill-hi-item lang_zh" *ngIf="!isFirst">{{z.zh}}</div>
-                    <div class="drill-code-item lang_en" *ngIf="isFirst">{{z.en.toUpperCase()}}</div>
+                    <div class="drill-hi-item-first lang_zh" *ngIf="isFirst">{{z['zh']}}</div>
+                    <div class="drill-hi-item lang_zh" *ngIf="!isFirst">{{z['zh']}}</div>
+                    <div class="drill-code-item lang_en" *ngIf="isFirst">{{z['en'].toUpperCase()}}</div>
                   </div>
                 </div>
               </div>
 
               <div class="empty-row">
-                <div class="empty-row-item"></div>
+                <div class="empty-row-item" *ngIf="curDrill.length"></div>
                 <!-- current element input -->
-                <div class="drill-hi">
+                <div class="drill-hi" *ngIf="curDrill.length">
                   <input
                     maxlength="5"
                     spellcheck="false"
@@ -76,16 +76,23 @@
                     type="text"
                     class="drill-css-input" appTxtInputFocus required />
                 </div>
+                <div class="drill-hi drill-css-input-done lang_cyr" *ngIf="!curDrill.length">
+                  Вправу закінчено. Аби зробити її ще раз - клацніть на ній ще раз. В іншому разі виберіть іншу вправу або перейдіть на наступний урок.
+                </div>
               </div>
 
               <!-- lower row -->
-
               <div class="empty-row">
-
-                <div class="empty-row-item">{{taskDone|json}}</div>
+                <div class="drill-hi-done">
+<!--                  {{taskDone|json}}-->
+                  <div *ngFor="let m of taskDone; let v = index;">
+                    <div class="drill-hi-item-done lang_zh">{{m.zh}}</div>
+                    <div class="drill-code-item-done lang_en">{{m.en.toUpperCase()}}</div>
+                  </div>
+                </div>
                 <div class="empty-row-item"></div>
-
               </div>
+
             </div>
 
           </div>
