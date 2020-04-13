@@ -14,10 +14,9 @@ export class MyKeyMaps {
   getKeyMaps() {
       this.keyInterface = {
           c2k: c2l,
-          l2c: l2c,
-        cjset: cjset
+          l2c,
+        cjset
         };
-      // console.log('this.KEYINTERFACE: ', this.keyInterface);
       return this.keyInterface;
     }
 }

@@ -54,14 +54,66 @@
 
               <!-- upper row -->
               <div class="empty-row">
-                <div class="empty-row-item drill-control-panel">Panel</div>
+                <div class="empty-row-item drill-control-panel">
+                  <strong class="lang_cyr">Допоміжні елементи вправ</strong>
+                  <div class="drill-buttons">
+
+                    <div class="tooltip" data-direction="bottom">
+                      <div class="tooltip__initiator">
+                        <button
+                          [ngClass]="{ 'drill-btn-active' : drillControls.kb}"
+                          (click)="toggleKB()"
+                          class="drill-btn lang_cyr tooltip">
+                          Клавіатура
+                        </button>
+                      </div>
+                      <div class="tooltip__item">
+                        ЦанЦзє клавіатура
+                      </div>
+                    </div>
+
+                    <div class="tooltip" data-direction="bottom">
+                      <div class="tooltip__initiator">
+                        <button
+                          [ngClass]="{ 'drill-btn-active' : drillControls.hint}"
+                          (click)="toggleHint()"
+                          class="drill-btn lang_cyr tooltip">
+                          Підказки
+                        </button>
+                      </div>
+                      <div class="tooltip__item">
+                        Підказки кодів
+                      </div>
+                    </div>
+
+                    <div class="tooltip" data-direction="bottom">
+                      <div class="tooltip__initiator">
+                        <button
+                          [ngClass]="{ 'drill-btn-active' : drillControls.radical}"
+                          (click)="toggleRadical()"
+                          class="drill-btn lang_cyr tooltip">
+                          Радикали
+                        </button>
+                      </div>
+                      <div class="tooltip__item">
+                        Радикали в кодах
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
                 <!-- zh -->
                 <div class="drill-hi">
                   <div *ngFor="let z of curDrill; let k = index; first as isFirst">
                     <div class="drill-hi-item-first lang_zh" *ngIf="isFirst">{{z['zh']}}</div>
                     <div class="drill-hi-item lang_zh" *ngIf="!isFirst">{{z['zh']}}</div>
-                    <div class="drill-code-item lang_en" *ngIf="isFirst">
+                    <div class="drill-code-item lang_en" *ngIf="isFirst && drillControls.hint">
+                      <span *ngIf="!drillControls.radical">
                       {{z['en'].toUpperCase()}}
+                      </span>
+                      <span *ngIf="drillControls.radical">
+                        {{z['radical'].toUpperCase()}}
+                      </span>
                       <span class="drill-code-item-wrong lang_en" *ngIf="z['wrong']">
                         {{z['wrong'].toUpperCase()}}
                       </span>
@@ -87,14 +139,14 @@
                     class="drill-css-input" appTxtInputFocus required />
                 </div>
                 <div class="drill-hi drill-css-input-done lang_cyr" *ngIf="!curDrill.length">
-                  Вправу закінчено. Аби повторити - виберіть її ще раз. В іншому випадку оберіть іншу вправу або перейдіть на наступний урок.
+                  Вправу закінчено. Виберіть її ще раз, іншу вправу або перейдіть на наступний урок.
                 </div>
               </div>
 
               <!-- lower row -->
               <div class="empty-row">
                 <div [ngClass]="{ 'drill-hi-done-active' : taskDone.length}"
-                  class="drill-hi-done">
+                     class="drill-hi-done">
                   <div *ngFor="let m of taskDone; let v = index;">
                     <div class="drill-hi-item-done lang_zh">{{m['zh']}}</div>
                     <div class="drill-code-item-done lang_en">{{m['en'].toUpperCase()}}</div>
@@ -108,7 +160,7 @@
           </div>
         </div>
 
-        <app-tut-kb></app-tut-kb>
+        <app-tut-kb *ngIf="drillControls.kb"></app-tut-kb>
       </div>
 
     </div>

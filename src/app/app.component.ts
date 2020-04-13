@@ -4,6 +4,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ApiService } from './services/api.service';
 import { LessnByIdService } from './services/lessn-by-id.service';
 import { CurVals } from './interfaces/curvals';
+import { MyKeyMaps } from './services/keymaps.service';
 
 @Component({
   selector: 'app-root',
@@ -17,12 +18,14 @@ export class AppComponent implements OnInit, OnDestroy {
   UAcont: Observable<any>;
   curInfoBlockId: number;
   drillNumber: number;
+  public keymap: any; // keyboads only
   curDrills: []; // a lesson drill set
   curDrill: []; // a current drill shown
   taskDone: []; // hieroglyphs typed (drill OUTPUT list)
   curDrillId: number; // show a selected drill
   userInput: string; // user drill code input
   userInputChanged: Subject<string> = new Subject<string>();
+  drillControls: {kb: boolean; hint: boolean; radical: boolean; }; // drill controls
 
   curDrillSubs: Subscription;
   uaContSubs: Subscription;
@@ -33,9 +36,13 @@ export class AppComponent implements OnInit, OnDestroy {
   buttonTitles: {prv: string; cur: string; nxt: string};  // nav bar button title
   storageContent: any; // copy of localstorage contents
 
-  constructor(private api: ApiService, private lessn: LessnByIdService) {
+  constructor(
+    private myKeyMaps: MyKeyMaps,
+    private api: ApiService,
+    private lessn: LessnByIdService) {
     this.buttonTitleID = {prv: 1, cur: 1, nxt: 2};
     this.buttonTitles = {prv: '', cur: '', nxt: ''};
+    this.drillControls = {kb: true, hint: true, radical: false}; // radical: radical(s) in letter-codes
     this.drillNumber = 0;
     this.curDrills = [];
     this.taskDone = [];
@@ -61,6 +68,8 @@ export class AppComponent implements OnInit, OnDestroy {
       content: false,
       infoBlock: true
     };
+    this.keymap = this.myKeyMaps.getKeyMaps();
+    // console.log('ngOnInit-keymap: ', this.keymap);
     this.curLessnSubs = this.lessn.getCurLessnID()
       .subscribe( (curVals: CurVals) => {
 
@@ -179,7 +188,17 @@ export class AppComponent implements OnInit, OnDestroy {
     // console.log('showDrillById[id]:', this.curDrills[id].task);
     // @ts-ignore
     this.curDrill = [...this.curDrills[id].task];
-    // console.log('this.curDrill:', this.curDrill);
+    // tslint:disable-next-line:prefer-for-of
+    for ( let i = 0; i < this.curDrill.length; i++ ) {
+      // @ts-ignore
+      this.curDrill[i].radical = '';
+      // @ts-ignore
+      const curEn = this.curDrill[i].en.toString().toLowerCase().split('');
+      curEn.forEach( el => {
+        // @ts-ignore
+        this.curDrill[i].radical += this.keymap.l2c[el];
+      });
+    }
   }
 
   toggleDrill(): void {
@@ -188,6 +207,7 @@ export class AppComponent implements OnInit, OnDestroy {
       infoBlock: false
     };
     this.showDrillById(this.curDrillId);
+    this.drillControls.radical = false;
   }
 
   getUserInput(txtInput: string): void {
@@ -209,6 +229,16 @@ export class AppComponent implements OnInit, OnDestroy {
 
     }
 
+  }
+
+  toggleKB(): void {
+    this.drillControls.kb = !this.drillControls.kb;
+  }
+  toggleHint(): void {
+    this.drillControls.hint = !this.drillControls.hint;
+  }
+  toggleRadical(): void {
+    this.drillControls.radical = !this.drillControls.radical;
   }
 
   ngOnDestroy(): void {
