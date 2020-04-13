@@ -6,7 +6,6 @@ update: version 9.1 already.
 ## TO-DO
 * Done entry disappear timeout/animation: new appears too quickly
 * A number of controls, incl. keyboard layout, etc
-* Conditional display of '_wrong_' variation, f.i. ``{"en":"ANVIT", "zh":"關", "wrong":"AN VI T"}``
 
 ## Development server
 

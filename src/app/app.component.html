@@ -54,13 +54,21 @@
 
               <!-- upper row -->
               <div class="empty-row">
-                <div class="empty-row-item"></div>
+                <div class="empty-row-item drill-control-panel">Panel</div>
                 <!-- zh -->
                 <div class="drill-hi">
                   <div *ngFor="let z of curDrill; let k = index; first as isFirst">
                     <div class="drill-hi-item-first lang_zh" *ngIf="isFirst">{{z['zh']}}</div>
                     <div class="drill-hi-item lang_zh" *ngIf="!isFirst">{{z['zh']}}</div>
-                    <div class="drill-code-item lang_en" *ngIf="isFirst">{{z['en'].toUpperCase()}}</div>
+                    <div class="drill-code-item lang_en" *ngIf="isFirst">
+                      {{z['en'].toUpperCase()}}
+                      <span class="drill-code-item-wrong lang_en" *ngIf="z['wrong']">
+                        {{z['wrong'].toUpperCase()}}
+                      </span>
+                      <span class="drill-code-item-group lang_en" *ngIf="z['group']">
+                        {{z['group'].toUpperCase()}}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -85,7 +93,8 @@
 
               <!-- lower row -->
               <div class="empty-row">
-                <div class="drill-hi-done">
+                <div [ngClass]="{ 'drill-hi-done-active' : taskDone.length}"
+                  class="drill-hi-done">
                   <div *ngFor="let m of taskDone; let v = index;">
                     <div class="drill-hi-item-done lang_zh">{{m['zh']}}</div>
                     <div class="drill-code-item-done lang_en">{{m['en'].toUpperCase()}}</div>

@@ -72,8 +72,6 @@ export class AppComponent implements OnInit, OnDestroy {
           this.UAcont = this.api.getContentsUA();
           this.uaContSubs = this.UAcont
             .subscribe( cont => {
-              // console.log('uaContSubs-storageContent: ', cont);
-
               this.buttonTitles.prv = cont.contents[0].ua;
               this.buttonTitles.cur = cont.contents[0].ua;
               this.buttonTitles.nxt = cont.contents[1].ua;
