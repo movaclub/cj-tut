@@ -4,9 +4,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 update: version 9.1 already.
 
 ## TO-DO
-* Drill number default/active CSS
 * Done entry disappear timeout/animation: new appears too quickly
 * A number of controls, incl. keyboard layout, etc
+* Conditional display of '_wrong_' variation, f.i. ``{"en":"ANVIT", "zh":"關", "wrong":"AN VI T"}``
 
 ## Development server
 

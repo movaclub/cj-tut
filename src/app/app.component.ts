@@ -175,13 +175,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   showDrillById(id: number): void {
     this.curDrillId = id;
-    console.log('curDrillId:', this.curDrillId);
+    // console.log('curDrillId:', this.curDrillId);
     this.taskDone = []; // also clean the output list
     // @ts-ignore
-    console.log('showDrillById[id]:', this.curDrills[id].task);
+    // console.log('showDrillById[id]:', this.curDrills[id].task);
     // @ts-ignore
     this.curDrill = [...this.curDrills[id].task];
-    console.log('this.curDrill:', this.curDrill);
+    // console.log('this.curDrill:', this.curDrill);
   }
 
   toggleDrill(): void {
@@ -194,9 +194,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   getUserInput(txtInput: string): void {
 
-    console.log('txtInput:', txtInput);
+    // console.log('txtInput:', txtInput);
     const sanitized = txtInput.replace(/[^a-z]/ig, '');
-    console.log('sanitized:', sanitized);
+    // console.log('sanitized:', sanitized);
     this.userInputChanged.next(sanitized);
     // @ts-ignore
     if ( sanitized.toUpperCase() === this.curDrill[0].en.toUpperCase() ) {

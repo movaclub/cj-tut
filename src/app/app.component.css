@@ -193,7 +193,10 @@
 }
 
 .drill-btn-title {
-  background-color: var(--cj26-color); color: snow; padding: 0 3px;
+  padding: 0 3px;
+  color: darkred;
+  font-weight: 700;
+  border-radius: .871rem;
 }
 
 .drill-btn-txt:hover {
@@ -202,9 +205,7 @@
   cursor: pointer;
 }
 .active {
-  color: snow;
-  background-color: var(--cj26-color);
-  cursor: pointer;
+  background-color: var(--cj26-color); color: snow; padding: 0 3px;
 }
 
 /* drill txt */
