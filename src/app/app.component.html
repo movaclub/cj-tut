@@ -107,7 +107,10 @@
                   <div *ngFor="let z of curDrill; let k = index; first as isFirst">
                     <div class="drill-hi-item-first lang_zh" *ngIf="isFirst">{{z['zh']}}</div>
                     <div class="drill-hi-item lang_zh" *ngIf="!isFirst">{{z['zh']}}</div>
-                    <div class="drill-code-item lang_en" *ngIf="isFirst && drillControls.hint">
+                    <div
+
+                      class="drill-code-item lang_en"
+                      *ngIf="isFirst && drillControls.hint">
                       <span *ngIf="!drillControls.radical">
                       {{z['en'].toUpperCase()}}
                       </span>
@@ -125,12 +128,11 @@
                 </div>
               </div>
 
-              <div class="empty-row">
-                <div class="empty-row-item" *ngIf="curDrill.length"></div>
                 <!-- current element input -->
-                <div class="drill-hi" *ngIf="curDrill.length">
+                <div *ngIf="curDrill.length">
                   <input
                     maxlength="5"
+                    size="22"
                     spellcheck="false"
                     pattern="[A-Za-z]+"
                     (ngModelChange)="getUserInput($event)"
@@ -138,10 +140,9 @@
                     type="text"
                     class="drill-css-input" appTxtInputFocus required />
                 </div>
-                <div class="drill-hi drill-css-input-done lang_cyr" *ngIf="!curDrill.length">
+                <div class="drill-css-input-done lang_cyr" *ngIf="!curDrill.length">
                   Вправу закінчено. Виберіть її ще раз, іншу вправу або перейдіть на наступний урок.
                 </div>
-              </div>
 
               <!-- lower row -->
               <div class="empty-row">
