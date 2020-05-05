@@ -11,7 +11,7 @@ export class ApiService {
   private apiURL: string;
 
   constructor(private http: HttpClient) {
-    this.apiURL = 'http://localhost:18181';
+    this.apiURL = 'http://api.cj26.club';
   }
 
   getContentsUA(): Observable<any> {
